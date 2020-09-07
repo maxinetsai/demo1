@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<div class="wrap">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>鐵人賽第二十一天-RWD入門-2(桌機+手機畫面)</title>
+        <link rel="stylesheet" type="text/css" href="reset.css">
+        <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        img{
+            vertical-align: bottom;
+        }
+        .footer{
+            background-color: #333;
+            color:#aaa;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .item-group{
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+        }
+        .banner img{
+            width: 100%;
+        }
+        .title{
+            margin: 0 0 20px;
+            background-color: #ccc;
+            padding: 30px 10px;
+        }
+        .title h2{
+            text-align: center;
+            font-size: 46px;
+            padding: 0 0 20px;
+        }
+        .title p{
+            font-size: 22px;
+            text-align: center;
+            line-height: 1.5em;
+        }
+        .item{
+            margin: 0 10px 0px;
+        }
+        .item .text h3{
+            font-size: 24px;
+            text-align: center;
+            padding: 5px 0 10px;
+        }
+        .item .pic img{
+            width: 100%; /*item中的圖片100%顯示*/
+        }
+
+        .service{
+            margin: 60px 0;
+            background-color: #fcc;
+        }
+
+        
+        @media screen and (min-width: 768px){
+            .item-group{
+                display: flex;
+                margin: 0 0 40px;
+            }
+            .service .item{
+                display: flex;
+            }
+            .service .item .pic,
+            .service .item .text{
+                width: 50%;
+                margin: 0;
+            }
+            .service .item .text{
+                display: flex;
+                padding: 0 20px 40px;
+                box-sizing: border-box;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+
+
+     /* 讓checkbox消失不出現,從menu_control控制*/
+        #menu_control{   
+            position: absolute;
+            z-index: -2;
+            opacity: 0; /*為了防止z-index失效又出現,所以再設定透明度為0,確保消失*/
+        }
+        .header{
+            height: 50px;
+            background-color: #ccc;
+            position: relative;
+        }
+        .logo{
+            width: 60px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        .logo img{
+            vertical-align: middle;
+        }
+        .menu_btn{
+            width: 40px;
+            height: 40px;
+            background-color: #000;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        .menu_btn span{
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            display: block;
+            overflow: hidden;
+        }
+        .menu_btn::before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            left: 4px;
+            width: 32px;
+            background-color: #aaa;
+            top: 0;
+            bottom: 0;
+            margin: auto;
+            box-shadow: 0px 8px 0px #aaa,0px -8px 0px #aaa;
+        }
+        nav{
+
+        }
+        nav a {
+            display: block;
+            text-decoration: none;
+            color: #06f7ff;
+            padding: 10px 20px;
+            border-bottom: 1px solid #06f7ff;
+        }
+        #menu_control:checked ~ .header nav{
+            left: 0;
+        }
+
+
+        @media screen and (max-width: 767px) {
+            /* 當螢幕尺寸小於等於767px,就當成手機尺寸 */
+            nav{
+                width: 80%;
+                height: calc(100vh - 50px);
+                background-color: #282923;
+                opacity: 70%;
+                position: absolute;
+                top: 50px;
+                left: -100%;
+                transition: 0.5s;
+            }
+        }
+        /* 以下為平版 */
+        @media screen and (min-width: 768px){
+            /* 當螢幕尺寸大於等於768px,就當成平版尺寸 */
+            .menu_btn{ display: none;} 
+            .header{ 
+                display: flex;
+                justify-content: space-between;
+                background-color: #282923;
+                align-items: center;
+                }
+                .logo a{
+                    display: block;
+                    height: 40px;
+                }
+                .logo img{
+                    display: block;
+                }
+            nav{
+                position: relative;
+                left: 0;
+                display: flex;
+                width: auto;
+                height: auto;
+                top: 0;
+                background-color: transparent;
+                }
+            nav a{
+                    border-bottom: none;
+            }
+        }
+        </style>
+    </head>
+</div>
+<body>
+
+    <input type="checkbox" name="" id="menu_control">  
+
+    <div class="header">
+        <h1 class="logo">
+            <a href="#"><img src="http://picsum.photos/60/40/?radom=1" alt="logo"></a>
+        </h1>
+        <label for="menu_control" class="menu_btn">
+            <span>選單</span>
+        </label>
+        <nav>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+            <a href="#">link</a>
+        </nav>
+    </div>
+    
+    <div class="banner">
+        <img src="http://picsum.photos/1400/500/?radom=2" >
+    </div>
+
+    <div class="about">
+        <div class="wrap">
+            <div class="title">
+                <h2>關於我們</h2>
+                <p>Lorem isum dolor sit amet consecttur adipisicing elit. Corporis nisi dolore nobis, iure enim itaque perspiciatis fuga sint impedit suscipit autem officiis quam. Veritatis, ea id facere voluptas at vero.</p>
+            </div>
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic"><img src="http://picsum.photos/300/200/?radom=11">
+                    </div>
+                <div class="text">
+                    <h3>title</h3>
+                    <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="http://picsum.photos/300/200/?radom=12">
+                    </div>
+                <div class="text">
+                    <h3>title</h3>
+                    <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="http://picsum.photos/300/200/?radom=13">
+                    </div>
+                     <div class="text">
+                        <h3>title</h3>
+                        <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="service">
+        <div class="wrap">
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic">
+                        <img src="http://picsum.photos/300/200/?radom=14">
+                    </div>
+                    <div class="text">
+                        <h3>title</h3>
+                        <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="about">
+        <div class="wrap">
+            <div class="title">
+                <h2>關於我們</h2>
+                <p>Lorem isum dolor sit amet consecttur adipisicing elit. Corporis nisi dolore nobis, iure enim itaque perspiciatis fuga sint impedit suscipit autem officiis quam. Veritatis, ea id facere voluptas at vero.</p>
+            </div>
+            <div class="item-group">
+                <div class="item">
+                    <div class="pic"><img src="http://picsum.photos/300/200/?radom=21">
+                    </div>
+                <div class="text">
+                    <h3>title</h3>
+                    <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="http://picsum.photos/300/200/?radom=22">
+                    </div>
+                <div class="text">
+                    <h3>title</h3>
+                    <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="http://picsum.photos/300/200/?radom=23">
+                    </div>
+                     <div class="text">
+                        <h3>title</h3>
+                        <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="pic">
+                        <img src="http://picsum.photos/300/200/?radom=24">
+                    </div>
+                     <div class="text">
+                        <h3>title</h3>
+                        <p>見面危險分享，自我對手因為廣告體現協調它的不肯，看著是我找不到觀點，幻想流行是我突然觀點醫藥原文高速記錄網絡一邊一天付。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="footer">
+        &copy; copyright 2018 by csscoke
+      </div>
+
+      
+</body>
+</html>
